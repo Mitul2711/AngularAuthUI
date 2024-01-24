@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toast: NgToastService
   ) { }
+  
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: res => {
           this.toast.success({ detail: "SUCCESS", summary: res.message, duration: 5000 });
+          this.authService.storeToken(res.token);
           this.router.navigate(['dashboard'])
         },
         error: err => {
