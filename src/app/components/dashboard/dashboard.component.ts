@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
 
     this.apiService.getUser().subscribe(res => {
       this.users = res;
+      console.log(res)
     })
   }
 
